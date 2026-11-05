@@ -1,0 +1,59 @@
+---
+import 'bulma/css/bulma.min.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Software engineering, infrastructure, and technical projects.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" href="/favicon.ico" />
+	<meta name="generator" content={Astro.generator} />
+    <title>{title} | tthomas63</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav class="container site-nav" aria-label="Main navigation">
+        <a class="wordmark" href="/">
+          tthomas63<span class="accent">/</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="https://github.com/tthomas63">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="container">
+        &copy; {new Date().getFullYear()} Tyler Thomas
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

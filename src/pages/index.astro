@@ -1,11 +1,77 @@
----
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    number: '01',
+    category: 'PYTHON / DEVELOPER TOOLING',
+    name: 'Django Knit',
+    description:
+      'Developer tooling for Django applications, APIs, and frontend integration.',
+  },
+  {
+    number: '02',
+    category: 'INFRASTRUCTURE / AUTOMATION',
+    name: 'SAW',
+    description:
+      'Dedicated server management, deployment, and operational tooling.',
+  },
+  {
+    number: '03',
+    category: 'GAME AI / EXPERIMENTATION',
+    name: 'RCBotSven5',
+    description:
+      'Navigation, waypoint authoring, and autonomous bot behavior in Sven Co-op.',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Software & Platform Engineer">
+  <main class="container">
+    <section class="intro-section">
+      <p class="eyebrow">SOFTWARE / SYSTEMS / ENGINEERING</p>
+
+      <h1 class="title is-1 hero-title">
+        Building software and the systems behind it.
+      </h1>
+
+      <p class="intro-copy">
+        I'm Tyler Thomas, a software engineer focused on Python,
+        infrastructure, automation, and practical engineering.
+      </p>
+
+      <div class="buttons">
+        <a class="button is-dark" href="#projects">
+          Explore projects
+        </a>
+        <a class="button is-light" href="https://github.com/tthomas63">
+          GitHub
+        </a>
+      </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+      <div class="section-heading">
+        <p class="eyebrow">SELECTED WORK</p>
+        <h2 class="title is-3">Projects & experiments</h2>
+      </div>
+
+      <div class="columns is-multiline">
+        {projects.map((project) => (
+          <div class="column is-one-third-desktop is-half-tablet">
+            <article class="project-card">
+              <div class="project-topline">
+                <span>{project.category}</span>
+                <span>{project.number}</span>
+              </div>
+
+              <h3 class="title is-4">{project.name}</h3>
+              <p>{project.description}</p>
+            </article>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
