@@ -1,0 +1,43 @@
+
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    category: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+>
+  <main class="site-width project-detail">
+    <a class="project-back" href="/notes/">
+      ← Engineering notes
+    </a>
+
+    <article>
+      <header class="project-detail-header">
+        <p class="eyebrow">{frontmatter.category}</p>
+
+        <h1 class="note-title">
+          {frontmatter.title}
+        </h1>
+
+        <p class="project-lead">
+          {frontmatter.description}
+        </p>
+      </header>
+
+      <div class="note-prose">
+        <slot />
+      </div>
+    </article>
+  </main>
+</BaseLayout>
