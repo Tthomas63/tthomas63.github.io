@@ -1,76 +1,188 @@
-
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const projects = [
-  {
-    number: '01',
-    category: 'PYTHON / DEVELOPER TOOLING',
-    name: 'Django Knit',
-    description:
-      'Developer tooling for Django applications, APIs, and frontend integration.',
-  },
-  {
-    number: '02',
-    category: 'INFRASTRUCTURE / AUTOMATION',
-    name: 'SAW',
-    description:
-      'Dedicated server management, deployment, and operational tooling.',
-  },
-  {
-    number: '03',
-    category: 'GAME AI / EXPERIMENTATION',
-    name: 'RCBotSven5',
-    description:
-      'Navigation, waypoint authoring, and autonomous bot behavior in Sven Co-op.',
-  },
-];
 ---
 
-<BaseLayout title="Software & Platform Engineer">
-  <main class="container">
-    <section class="intro-section">
-      <p class="eyebrow">SOFTWARE / SYSTEMS / ENGINEERING</p>
+<BaseLayout
+  title="Software & Platform Engineer"
+  description="Tyler Thomas is a software engineer focused on Python, backend systems, infrastructure, automation, and technical tooling."
+>
+  <main>
+    <section class="hero site-width" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> SOFTWARE / PLATFORM ENGINEERING</p>
+        <h1 id="hero-title">Building software <span>and the systems behind it.</span></h1>
+        <p class="hero-description">
+          I'm Tyler Thomas, a software engineer working across backend
+          systems, API architecture, and infrastructure. Beyond building
+          applications, I've helped establish the conventions, tooling,
+          and operational practices that keep them maintainable.
+        </p>
+        <div class="hero-actions">
+          <a class="action-primary" href="#work">Explore selected work <span aria-hidden="true">↘</span></a>
+          <a class="action-text" href="https://github.com/tthomas63" target="_blank" rel="noopener noreferrer">GitHub profile <span aria-hidden="true">↗</span></a>
+          <a class="action-text" href="/notes/">
+            Read engineering notes <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
 
-      <h1 class="title is-1 hero-title">
-        Building software and the systems behind it.
-      </h1>
+      <aside class="focus-panel" aria-label="Engineering focus">
+        <div class="focus-head"><span>FIELD NOTES / 001</span><span>TT—2026</span></div>
+        <div class="focus-main">
+          <p class="focus-kicker">AREAS OF FOCUS</p>
+          <ol class="focus-list">
+            <li><span>01</span><strong>Backend & API architecture</strong><small>Python, Django, resource design</small></li>
+            <li><span>02</span><strong>Platform & reliability</strong><small>Deployments, infrastructure, recovery</small></li>
+            <li><span>03</span><strong>Automation & tooling</strong><small>Integrations, data workflows, generation</small></li>
+          </ol>
+        </div>
+        <p class="focus-foot">SELECTED PROJECTS, NOT AN EXHAUSTIVE RESUME.</p>
+      </aside>
+    </section>
 
-      <p class="intro-copy">
-        I'm Tyler Thomas, a software engineer focused on Python,
-        infrastructure, automation, and practical engineering.
-      </p>
+    <section class="work-section site-width" id="work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / SELECTED WORK</p>
+          <h2 id="work-title">Things I've built and worked through.</h2>
+        </div>
+        <p class="section-intro">A selection of independent projects and engineering problems, with the decisions behind them.</p>
+      </div>
 
-      <div class="buttons">
-        <a class="button is-dark" href="#projects">
-          Explore projects
-        </a>
-        <a class="button is-light" href="https://github.com/tthomas63">
-          GitHub
-        </a>
+      <article class="featured-project" aria-labelledby="knit-title">
+        <div class="featured-copy">
+          <div class="featured-meta"><span>FEATURED PROJECT</span><span class="status-mark"><span aria-hidden="true"></span> IN DEVELOPMENT</span></div>
+          <h3 id="knit-title">Django Knit<span class="project-slash">/</span></h3>
+          <p class="featured-lead">Less repetitive glue between Django models, APIs, and frontend types.</p>
+          <p class="featured-description">
+            An independent tooling project exploring model-driven generation for Django REST Framework and TypeScript. The current work centers on explicit registration, predictable configuration, and maintainable output.
+          </p>
+          <a
+            class="action-text featured-project-link"
+            href="/projects/django-knit/"
+          >
+            Read project overview <span aria-hidden="true">↗</span>
+          </a>
+          <div class="tag-list" aria-label="Technologies used">
+            <span>PYTHON</span><span>DJANGO</span><span>DRF</span><span>TYPESCRIPT</span>
+          </div>
+          <div class="featured-bottom"><span>INDEPENDENT DEVELOPMENT</span><span>MODEL-DRIVEN GENERATION</span></div>
+        </div>
+        <div class="diagram-panel" aria-label="Simplified diagram of Django Knit model configuration and generated outputs" role="img">
+          <div class="diagram-head"><span>ARCHITECTURE / SIMPLIFIED</span><span>DK—001</span></div>
+          <div class="diagram-content">
+            <div class="diagram-node diagram-source">
+              <span class="diagram-tag">INPUT</span>
+              <strong>Django models</strong>
+              <small>fields · relations · metadata</small>
+            </div>
+            <div class="diagram-connector" aria-hidden="true"><span></span></div>
+            <div class="diagram-node diagram-core">
+              <span class="diagram-tag">CONFIGURATION</span>
+              <strong>Knit registry</strong>
+              <small>model registration + settings</small>
+            </div>
+            <div class="diagram-connector" aria-hidden="true"><span></span></div>
+            <div class="diagram-output">
+              <div class="diagram-node"><span class="diagram-tag">OUTPUT A</span><strong>DRF code</strong></div>
+              <div class="diagram-node"><span class="diagram-tag">OUTPUT B</span><strong>TypeScript types</strong></div>
+            </div>
+          </div>
+          <div class="diagram-foot"><span>ONE CONFIGURATION</span><span>→</span><span>MULTIPLE OUTPUTS</span></div>
+        </div>
+      </article>
+
+      <div class="more-work-heading"><p class="eyebrow">OTHER ENGINEERING WORK</p><span>02 — 04</span></div>
+      <div class="work-list">
+        <article class="work-entry">
+          <div class="work-number">02</div>
+          <div class="work-entry-content">
+            <p class="work-type">INDEPENDENT / INFRASTRUCTURE</p>
+            <h3>Linux server operations & automation</h3>
+            <p>Containerized services, configuration management, logging, and practical troubleshooting tools for running dedicated servers.</p>
+          </div>
+          <div class="work-technologies">LINUX <span>·</span> DOCKER <span>·</span> AUTOMATION</div>
+        </article>
+        <article class="work-entry">
+          <div class="work-number">03</div>
+          <div class="work-entry-content">
+            <p class="work-type">PROFESSIONAL / BACKEND</p>
+            <h3>Legacy data import & migration workflows</h3>
+            <p>Resource-specific Django/DRF import pipelines, domain validation, and transactional boundaries for moving legacy data into modern systems.</p>
+          </div>
+          <div class="work-technologies">PYTHON <span>·</span> DJANGO <span>·</span> DATA</div>
+        </article>
+        <article class="work-entry">
+          <div class="work-number">04</div>
+          <div class="work-entry-content">
+            <p class="work-type">INDEPENDENT / ALGORITHMS</p>
+            <h3>Navigation & procedural experiments</h3>
+            <p>Explorations of graph-based navigation, waypoint systems, and procedural geometry in interactive environments.</p>
+          </div>
+          <div class="work-technologies">PATHFINDING <span>·</span> GEOMETRY <span>·</span> TOOLS</div>
+        </article>
       </div>
     </section>
 
-    <section class="projects-section" id="projects">
-      <div class="section-heading">
-        <p class="eyebrow">SELECTED WORK</p>
-        <h2 class="title is-3">Projects & experiments</h2>
-      </div>
-
-      <div class="columns is-multiline">
-        {projects.map((project) => (
-          <div class="column is-one-third-desktop is-half-tablet">
-            <article class="project-card">
-              <div class="project-topline">
-                <span>{project.category}</span>
-                <span>{project.number}</span>
-              </div>
-
-              <h3 class="title is-4">{project.name}</h3>
-              <p>{project.description}</p>
-            </article>
+    <section class="expertise-band" id="expertise" aria-labelledby="expertise-title">
+      <div class="site-width expertise-inner">
+        <div class="expertise-lead">
+          <p class="eyebrow">02 / WHAT I WORK ON</p>
+          <h2 id="expertise-title">The work behind the work.</h2>
+        </div>
+        
+        <div class="expertise-columns">
+          <div>
+            <span>01</span>
+            <h3>Backend & API architecture</h3>
+            <p>
+              Resource design, reusable API conventions,
+              filtering strategies, data modeling,
+              and integration workflows.
+            </p>
           </div>
-        ))}
+
+          <div>
+            <span>02</span>
+            <h3>Infrastructure & production engineering</h3>
+            <p>
+              Linux systems, deployments, database migrations,
+              recovery planning, and operational troubleshooting.
+            </p>
+          </div>
+
+          <div>
+            <span>03</span>
+            <h3>Automation & developer tooling</h3>
+            <p>
+              Reducing repetitive work through code generation,
+              data pipelines, infrastructure automation,
+              and practical developer tools.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="closing-section site-width" id="about" aria-labelledby="about-title">
+      <div class="about-block">
+        <p class="eyebrow">03 / ABOUT</p>
+        <h2 id="about-title">Curiosity with a practical streak.</h2>
+        <p>
+          My experience spans backend applications, infrastructure,
+          and data-intensive systems. Alongside implementation,
+          I've developed API conventions, designed integration workflows,
+          and worked through the operational consequences of software
+          decisions in production.
+        </p>
+        <p>Outside conventional application development, I've spent years exploring navigation algorithms, procedural systems, and tooling built around real operational needs.</p>
+      </div>
+      <div class="contact-block" id="contact">
+        <p class="eyebrow">04 / CONNECT</p>
+        <h2>Let's talk engineering.</h2>
+        <p>Interested in a technical discussion or my work? Start with the projects and background on my GitHub profile.</p>
+        <a href="https://github.com/tthomas63" target="_blank" rel="noopener noreferrer">View GitHub profile <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>

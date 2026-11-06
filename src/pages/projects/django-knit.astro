@@ -1,0 +1,275 @@
+
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Django Knit"
+  description="An independent Django and TypeScript code generation project."
+>
+  <main class="site-width project-detail">
+    <a class="project-back" href="/#work">← Selected work</a>
+
+    <header class="project-detail-header">
+      <p class="eyebrow">01 / INDEPENDENT DEVELOPMENT</p>
+
+      <h1>Django Knit<span class="project-slash">/</span></h1>
+
+      <p class="project-lead">
+        Model-driven code generation for Django and TypeScript,
+        without forcing applications into a prescribed architecture.
+      </p>
+
+      <p class="project-status">Python · Django · DRF · TypeScript</p>
+    </header>
+
+    
+    <section class="project-detail-section">
+    <h2>Why I built it</h2>
+
+    <div>
+        <p>
+        Django Knit started as an experiment inspired by Coalesce,
+        a model-driven development framework. I appreciated the
+        potential to eliminate repetitive API and frontend code,
+        but frequently found its prescribed conventions limiting.
+        </p>
+
+        <p>
+        One particularly frustrating experience involved something
+        as ordinary as filtering records by a list of IDs. The
+        generated API didn't support the operation I needed until
+        the framework added support later. A tool intended to
+        simplify development had become an obstacle to an otherwise
+        straightforward requirement.
+        </p>
+
+        <p>
+        Knit grew out of that experience: explore the benefits
+        of model-driven generation while retaining the flexibility
+        and familiar conventions of Django and Django REST Framework.
+        </p>
+    </div>
+    </section>
+
+    <section class="project-detail-section">
+      <h2>The approach</h2>
+      <p>
+        Django Knit uses explicit model registration and configuration
+        to collect model metadata and drive code generation.
+        The goal is predictable, readable output without requiring
+        developers to surrender control of their applications.
+      </p>
+    </section>
+
+    <section class="project-detail-section">
+    <h2>From discovery to registration</h2>
+
+    <div>
+        <p>
+        The first implementation automatically discovered Django
+        models. That was convenient for proving the generator
+        could work, but it also meant the default behavior
+        included models the developer might never have intended
+        to expose through an API.
+        </p>
+
+        <p>
+        I eventually reversed that assumption. Model
+        participation should be explicit, not automatic.
+        A developer should decide which models belong in the
+        generated API surface.
+        </p>
+
+        <p>
+        Knit now provides decorator-based and settings-based
+        registration through a shared registry. Settings-based
+        registration also permits models from Django or
+        third-party applications to participate without
+        modifying their source code.
+        </p>
+
+        <p>
+        This adds a configuration step, but makes the scope of
+        generation intentional and easier to reason about.
+        </p>
+    </div>
+    </section>
+
+    <section class="project-detail-section">
+        <h2>Generation pipeline</h2>
+
+        <div>
+            <p>
+            Django Knit begins with explicitly registered Django
+            models. Their configuration and model metadata are
+            collected before being passed to the generation templates.
+            </p>
+
+            <figure class="knit-pipeline">
+            <ol>
+                <li>
+                <span class="pipeline-number">01</span>
+                <div>
+                    <strong>Registration</strong>
+                    <p>
+                    Models opt in through the @knit_model decorator
+                    or Django settings.
+                    </p>
+                </div>
+                </li>
+
+                <li>
+                <span class="pipeline-number">02</span>
+                <div>
+                    <strong>Registry</strong>
+                    <p>
+                    Associates models with their developer-supplied
+                    configuration.
+                    </p>
+                </div>
+                </li>
+
+                <li>
+                <span class="pipeline-number">03</span>
+                <div>
+                    <strong>BuildHelper / ModelData</strong>
+                    <p>
+                    Inspects Django models and assembles metadata
+                    for downstream generators.
+                    </p>
+                </div>
+                </li>
+
+                <li>
+                <span class="pipeline-number">04</span>
+                <div>
+                    <strong>Code generation</strong>
+                    <p>
+                    Templates produce Django REST Framework and
+                    TypeScript source files.
+                    </p>
+                </div>
+                </li>
+            </ol>
+
+            <figcaption>
+                Simplified build pipeline. The shared metadata
+                contract is still under active development.
+            </figcaption>
+            </figure>
+        </div>
+    </section>
+
+
+    <section class="project-detail-section">
+        <h2>Developer configuration</h2>
+
+        <div>
+            <p>
+            Registration is explicit. Models can be registered
+            through a decorator or application settings, including
+            models owned by third-party Django applications.
+            </p>
+
+            <pre class="project-code"><code>{`KNIT["MODELS_TO_REGISTER"] = {
+            "auth.Group": {
+                "searchable_fields": ("name",),
+            },
+            "contenttypes.ContentType": {},
+        }`}</code></pre>
+
+            <p>
+            Settings-based registration allows developers to opt
+            into generation without modifying the underlying model
+            definitions.
+            </p>
+        </div>
+    </section>
+
+
+    <section class="project-detail-section">
+        <h2>API composition</h2>
+
+        <div>
+            <p>
+            My preference is to keep resources independently
+            accessible, return lightweight relationship references,
+            and provide shallow nested representations when a
+            particular view benefits from additional context.
+            </p>
+
+            <p>
+            The goal isn't to minimize requests or response sizes
+            at all costs. It's to balance database work, serialization,
+            payload size, and network overhead without forcing every
+            consumer to retrieve an entire object graph.
+            </p>
+
+            <p>
+            This approach relies on flexible filtering and efficient
+            collection retrieval. Where ordinary resource endpoints
+            aren't sufficient, targeted actions or specialized
+            endpoints can serve more demanding access patterns.
+            </p>
+
+            <p>
+            Knit's simple and detailed generated types reflect this
+            approach. Completing and validating the frontend integration
+            remains part of the ongoing development work.
+            </p>
+        </div>
+    </section>
+    
+    <section class="project-detail-section">
+        <h2>Configuration versus metadata</h2>
+
+        <div>
+            <p>
+            As the generators grew more capable, configuration
+            supplied by developers became increasingly mixed
+            with information discovered from Django models.
+            </p>
+
+            <p>
+            The current refactor separates these responsibilities.
+            KnitModelConfig describes developer intent, while
+            BuildHelper collects model and field information
+            into structures such as ModelData and FieldData
+            for downstream generation.
+            </p>
+
+            <p>
+            The benefit is a clearer boundary between what a
+            developer requests and what the generator discovers.
+            It also gives the Python and TypeScript generators
+            a common source of model information.
+            </p>
+
+            <p>
+            This separation is still evolving. The metadata
+            structures retain Django-specific objects, and
+            some templates have yet to adopt the newer
+            configuration model consistently.
+            </p>
+        </div>
+    </section>
+
+    <section class="project-detail-section">
+      <h2>Current state</h2>
+      <p>
+        Django Knit remains an active prototype. Explicit registration
+        and model metadata collection are implemented, and existing
+        generations demonstrate Python serializers, viewsets, TypeScript
+        models, and API clients.
+        <br>
+        <br>
+        Current work focuses on reconciling the generation templates
+        with the newer registration and configuration architecture.
+        A separate project's frontend API design provides the intended
+        direction for completing the TypeScript integration, but that
+        integration has not yet been completed and verified end to end.
+      </p>
+    </section>
+  </main>
+</BaseLayout>

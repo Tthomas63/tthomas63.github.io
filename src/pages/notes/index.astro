@@ -1,0 +1,44 @@
+
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const notes = [
+  {
+    category: 'DATABASES / DEPLOYMENT',
+    title: 'Separate historical backfills from deployment',
+    description:
+      'Why historical data processing deserves its own execution and recovery lifecycle.',
+    href: '/notes/backfills-and-deployments/',
+  },
+];
+---
+
+<BaseLayout
+  title="Engineering Notes"
+  description="Engineering patterns, decisions, and lessons from building and operating software."
+>
+  <main class="site-width project-detail">
+    <header class="project-detail-header">
+      <p class="eyebrow">ENGINEERING / FIELD NOTES</p>
+
+      <h1 class="note-title">
+        Engineering Notes<span class="project-slash">/</span>
+      </h1>
+
+      <p class="project-lead">
+        Recurring engineering problems, approaches I've found
+        useful, and the tradeoffs behind them.
+      </p>
+    </header>
+
+    <section class="notes-list" aria-label="Engineering articles">
+      {notes.map((note) => (
+        <a class="note-row" href={note.href}>
+          <span class="eyebrow">{note.category}</span>
+          <h2>{note.title} <span aria-hidden="true">↗</span></h2>
+          <p>{note.description}</p>
+        </a>
+      ))}
+    </section>
+  </main>
+</BaseLayout>
